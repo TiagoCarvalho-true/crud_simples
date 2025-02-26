@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+
+   
+    }
+.main{
+    text-align: center;
+    width: 500px;
+    background-color: azure;
+    border-radius: 15px;
+   
+    border: solid 15px rgb(139, 72, 255);
+    
+}
+    input, button {
+     
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    }
+    button{
+        color: rgb(0, 99, 185);
+        
+    }
+    /* 📌 Responsividade para telas menores */
+    @media (max-width: 600px) {
+    input, button {
+    width: 100%;
+    }
+    }
