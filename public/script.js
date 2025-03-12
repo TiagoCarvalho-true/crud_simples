@@ -9,47 +9,46 @@ function salvarUsuario() {
     .then(() => listarUsuarios()); // Atualiza a lista de usuários
     }
     
+    
     // 📌 Função para listar usuários cadastrados
     function listarUsuarios() {
-    fetch("http://localhost:3000/usuarios")
-    .then(res => res.json())
-    .then(usuarios => {
-    const lista = document.getElementById("listaUsuarios");
-    lista.innerHTML = ""; // Limpa a lista antes de preencher
-    usuarios.forEach(user => {
-    const li = document.createElement("li");
-    li.textContent = user.nome;
-    lista.appendChild(li);
-    });
-    });
-    }
-    // 📌 Função para listar usuários cadastrados
-function listarUsuarios() {
-    fetch("http://localhost:3000/usuarios")
-        .then(res => res.json())
-        .then(usuarios => {
-            const lista = document.getElementById("listaUsuarios");
-            lista.innerHTML = ""; // Limpa a lista antes de preencher
-            usuarios.forEach(user => {
-                const li = document.createElement("li");
-                li.textContent = user.nome;
-
-                // Botão de editar
-                const btnEditar = document.createElement("button");
-                btnEditar.textContent = "Editar";
-                btnEditar.onclick = () => editarUsuario(user.id, user.nome);
-
-                // Botão de deletar
-                const btnDeletar = document.createElement("button");
-                btnDeletar.textContent = "Deletar";
-                btnDeletar.onclick = () => deletarUsuario(user.id);
-
-                li.appendChild(btnEditar);
-                li.appendChild(btnDeletar);
-                lista.appendChild(li);
+        fetch("http://localhost:3000/usuarios")
+            .then(res => res.json())
+            .then(usuarios => {
+                const lista = document.getElementById("listaUsuarios");
+                lista.innerHTML = "";
+                usuarios.forEach(user => {
+                    const li = document.createElement("li");
+                    
+                    // Span para o nome
+                    const spanNome = document.createElement("span");
+                    spanNome.textContent = user.nome;
+                    
+                    // Div para os botões
+                    const divBotoes = document.createElement("div");
+                    divBotoes.className = "botoes";
+    
+                    // Botão de editar com ícone
+                    const btnEditar = document.createElement("button");
+                    btnEditar.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEditar.onclick = () => editarUsuario(user.id, user.nome);
+    
+                    // Botão de deletar com ícone
+                    const btnDeletar = document.createElement("button");
+                    btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnDeletar.onclick = () => deletarUsuario(user.id);
+    
+                    // Adiciona os botões à div
+                    divBotoes.appendChild(btnEditar);
+                    divBotoes.appendChild(btnDeletar);
+    
+                    // Adiciona o nome e os botões ao li
+                    li.appendChild(spanNome);
+                    li.appendChild(divBotoes);
+                    lista.appendChild(li);
+                });
             });
-        });
-}
+    }
 
 // 📌 Função para editar um usuário
 function editarUsuario(id, nomeAtual) {
@@ -77,5 +76,7 @@ function deletarUsuario(id) {
         .then(() => listarUsuarios()); // Atualiza a lista de usuários
     }
 }
+
+
     // 📌 Carregar usuários ao iniciar a página
     listarUsuarios();

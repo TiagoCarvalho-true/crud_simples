@@ -1,5 +1,3 @@
-
-
 // 📌 Importando módulos
 const express = require("express"); // Framework para criar o servidor
 const sqlite3 = require("sqlite3").verbose(); // Banco de dados SQLite
